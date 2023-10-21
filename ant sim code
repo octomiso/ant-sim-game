@@ -1,0 +1,163 @@
+//the menu screen
+Console.WriteLine("welcome to ant colony simulator! type start to start your journey! or end to end the game");
+var input= Console.ReadLine();
+var ants = 0; //how many ants you have throughout
+switch (input.Trim().ToLower())
+{
+    case "start":
+        start(""); //goes to starting menu
+        break;
+    case "end":
+        Console.WriteLine("bye bye"); 
+        Environment.Exit(0); //exits
+        break;
+    default:
+        Console.WriteLine("that's not valid input! type 'start' or 'end' ");
+        Environment.Exit(1); //exits
+        break;
+
+}
+void start(string name)
+{
+    Console.WriteLine(@$"you are an ant that was just born, you need to defeat the rival colony. what will you do? type one of these options out
+Explore
+FindFood
+FightRivalColony
+Ants");
+    input= Console.ReadLine();
+
+    while (true)
+    {
+        switch (input.Trim().ToLower())
+        {
+            case "explore":
+                Explore("");
+                break;
+            case "findfood":
+                FindFood("");
+                break;
+            case "fightrivalcolony":
+                FightRivalColony("");
+                break;
+            case "ants":
+                ANTS("");
+                break;
+            default:
+                Console.WriteLine("that's not valid input! would you like to retry?");
+                start("");
+                break;
+
+        }
+    }
+       
+    
+    
+}
+
+void Explore(string name)
+{
+    //var random = new Random();
+    //int rand;
+    //rand = random.Next(4);
+
+    //choices that are made depending on how many ants you have
+    if (ants == 0) //if ants equals zero, do this condition
+    {
+        Console.WriteLine("you explored and found a stray ant!!");
+        ants += 1;
+        Console.WriteLine("ants + 1!");
+        start("");
+
+    }
+    else if (ants > 2) //if ants is greater than 2
+    {
+        Console.WriteLine("you found a nice beetle, he gave you some food!");
+        ants += 5;
+        Console.WriteLine("ants + 5");
+        start("");
+    }
+    else if (ants > 10) //if ants is greater than 10
+    {
+        Console.WriteLine("you found a group of ants, hooray!");
+        ants += 10;
+        Console.WriteLine("ants + 10!");
+        start("");
+    }
+    else //else do this condition
+    {
+        Console.WriteLine("you found a stray crumb");
+        ants += 1;
+        Console.WriteLine("ants + 1");
+        start("");
+    }
+
+}
+
+void FindFood(string name)
+{
+    //choices that are made depending on how many ants you have
+    if (ants == 0)
+    {
+        Console.WriteLine("you explored and found a crumb!");
+        ants += 2;
+        Console.WriteLine("ants + 2!");
+        start("");
+        
+    }
+    else if (ants > 2)
+    {
+        Console.WriteLine("you found a piece of bread!");
+        ants += 4;
+        Console.WriteLine("ants + 4");
+        start("");
+    }
+    else if (ants > 10)
+    {
+        Console.WriteLine("you found a big piece of chicken! hooray!");
+        ants += 10;
+        Console.WriteLine("ants + 10!");
+        start("");
+    }
+    else
+    {
+        Console.WriteLine("you didnt find any food today");
+        start("");
+    }
+    
+       
+}
+
+void FightRivalColony(string name)
+{
+    //choices that are made depending on how many ants you have, but you lose ants
+    if (ants == 0)
+    {
+        Console.WriteLine("you went in alone, and you died!");
+        start("");
+    }else if (ants> 10)
+    {
+        Console.WriteLine("you fought a small scale war.");
+        ants -= 2;
+        Console.WriteLine("ants - 2!");
+        start("");
+    }else if (ants>= 50)
+    {
+        Console.WriteLine("you finally got to the nest and defeated the queen! you won! Thanks for playing!");
+        Environment.Exit(0); ;
+    }
+    else
+    {
+        Console.WriteLine("you didn't find any ants to fight");
+        start("");
+    }
+ 
+
+        
+}
+
+void ANTS (string name)
+{
+    //shows how many ants you have
+    Console.WriteLine("you have- " + ants +" ants");
+    start("");
+}
